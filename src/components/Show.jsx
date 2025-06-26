@@ -1,16 +1,18 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { deleteExpense } from '../features/expenseSlice'
 
 const Show = () => {
 
-  const expenses = useSelector(state => state.expenses)
-  console.log(expenses)
+  const expenses = useSelector(state => state.expenses || [])
+  const dispatch = useDispatch()
 
   return (
     <ul>
       {expenses.map((item) => (
-        <li key={item.key}>
+        <li key={item.id}>
           <span>{item.text}</span>
+          <button onClick={() => dispatch(deleteExpense(item.id))}>Delete</button>
         </li>
       ))}
     </ul>

@@ -8,7 +8,8 @@ const Input = () => {
 
     const dispatch = useDispatch()
 
-    const dispatchHandler = () => {
+    const dispatchHandler = (e) => {
+        e.preventDefault()
         dispatch(addExpense(input))
         setInput('')
     }

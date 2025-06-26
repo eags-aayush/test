@@ -4,7 +4,7 @@ const initialState = {
   expenses: []
 }
 
-export const arraySlice = createSlice({
+export const expenseSlice = createSlice({
   name: 'expense',
   initialState,
   reducers: {
@@ -13,10 +13,14 @@ export const arraySlice = createSlice({
             id: Date.now(),
             text: action.payload
         })
-    }
+    },
+
+    deleteExpense: (state, action) => {
+      state.expenses = state.expenses.filter((item) => item.id !==action.payload)
+    },
   }
 })
 
-export const { addExpense } = arraySlice.actions
+export const { addExpense, deleteExpense } = expenseSlice.actions
 
-export default arraySlice.reducer
+export default expenseSlice.reducer
